@@ -4,6 +4,18 @@ repos:
     hooks:
       - id: check-merge-conflict
       - id: debug-statements
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-xml
+      - id: check-ast
+      - id: check-case-conflict
+      - id: name-tests-test
+      - id: pretty-format-json
+        args: [--autofix]
+
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
@@ -19,7 +31,7 @@ repos:
       - id: flake8
         additional_dependencies: [flake8-docstrings]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.2.0"
+    rev: "v1.3.0"
     hooks:
       - id: mypy
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -27,4 +39,9 @@ repos:
     hooks:
       - id: markdownlint
         args: ["--disable", "MD013"]
+    - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.272"
+    hooks:
+      - id: ruff
+        args: ["--fix"]
         

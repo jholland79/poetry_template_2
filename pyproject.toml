@@ -2,13 +2,15 @@
 name = "MyProject"
 version = "0.1.0"
 description = ""
-authors = ["Jane Doe <jane_doe@some_email.com>"]
+authors = ["John Holland <john.holland@abbott.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.0"
+ruff = "^0.0.272"
+pandas-stubs = "^2.0.2.230605"
+pytest = "^7.3"
 pytest-cov = "^4.0.0"
 pytest-mypy = "^0.10.0"
 pytest-mock = "^3.7.0"
@@ -17,6 +19,9 @@ pre-commit = "^3.0.4"
 black = "^23.1.0"
 flake8 = "^6.0.0"
 flake8-docstrings = "^1.6.0"
+ipdb = "^0.13.13"
+ipykernel = "^6.23.1"
+pytest-profiling = "^1.7.0"
 
 [tool.mypy]
 disallow_any_explicit = true
@@ -35,6 +40,20 @@ profile = "black"
 
 [tool.pytest.ini_options]
 addopts = "-v --mypy -p no:warnings --cov=myproject --cov-report=html --doctest-modules --ignore=myproject/__main__.py"
+markers = [
+    "wip: Tests for features we currently work on",
+    "slow: Mark slow tests to ignore them for development",
+]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+select = ["ALL"]
+ignore = ["D211", "D213", "ANN101", "S101"]
+target-version = "py311"
+
+[tool.ruff.per-file-ignores]
+"tests/*.py" = ["PLR2004"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
